@@ -3,6 +3,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { LogoutButton } from "../LogoutButton";
 
 type DashboardShellProps = {
   children: ReactNode;
@@ -41,7 +42,7 @@ export function DashboardShell({ children }: DashboardShellProps) {
     loadMe();
   }, []);
 
-  async function handleLogout() {
+  /*async function handleLogout() {
     setLogoutLoading(true);
     try {
       await fetch("/api/logout", { method: "POST" });
@@ -51,7 +52,7 @@ export function DashboardShell({ children }: DashboardShellProps) {
     } finally {
       setLogoutLoading(false);
     }
-  }
+  }*/
 
   return (
     <div className="flex min-h-screen bg-slate-950 text-slate-50">
@@ -128,13 +129,7 @@ export function DashboardShell({ children }: DashboardShellProps) {
               <span className="text-slate-400">Welcome</span>
             )}
           </div>
-          <button
-            onClick={handleLogout}
-            disabled={logoutLoading}
-            className="rounded-full bg-slate-100 px-4 py-1.5 text-xs font-semibold text-slate-900 shadow hover:bg-white disabled:cursor-not-allowed disabled:bg-slate-300"
-          >
-            {logoutLoading ? "Logging out..." : "Logout"}
-          </button>
+          <LogoutButton />          
         </header>
 
         {/* Content */}

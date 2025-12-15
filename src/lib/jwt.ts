@@ -19,5 +19,5 @@ export async function signToken(
 
 export async function verifyToken(token: string) {
   const { payload } = await jwtVerify(token, secret);
-  return payload as { userId?: string; [key: string]: unknown };
+  return payload as { userId?: string; role?: string };
 }

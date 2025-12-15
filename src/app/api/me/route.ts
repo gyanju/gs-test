@@ -37,10 +37,14 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(
       {
+        id: user._id.toString(),
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
         phone: user.phone,
+        role: user.role ?? "user",
+        avatarUrl: user.avatarUrl ?? "",
+        createdAt: user.createdAt ?? null,
       },
       { status: 200 }
     );

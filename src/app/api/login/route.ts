@@ -47,6 +47,15 @@ export async function POST(req: Request) {
       maxAge: 7 * 24 * 60 * 60,
     });
 
+    // Set user role cookie (e.g., 'admin' or 'user')
+    res.cookies.set("user_role", user.role, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 7 * 24 * 60 * 60,  // 7 days
+    });
+
     return res;
   } catch (err) {
     console.error("Login error:", err);

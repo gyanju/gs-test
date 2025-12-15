@@ -6,7 +6,8 @@ export async function GET() {
   try {
     await connectToDatabase();
     const count = await User.countDocuments();
-    return NextResponse.json({ count }, { status: 200 });
+    console.log(count);
+    return NextResponse.json({ count: count }, { status: 200 });
   } catch (err) {
     console.error("GET /api/users/count error:", err);
     return NextResponse.json(
