@@ -57,7 +57,7 @@ export function DashboardShell({ children }: DashboardShellProps) {
   return (
     <div className="flex min-h-screen bg-slate-950 text-slate-50">
       {/* Sidebar */}
-      <aside className="flex w-64 flex-col bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 shadow-xl">
+      <aside className="flex w-64 flex-col bg-linear-to-b from-slate-900 via-slate-950 to-slate-900 shadow-xl">
         {/* Brand */}
         <div className="px-5 pb-4 pt-6">
           <div className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">

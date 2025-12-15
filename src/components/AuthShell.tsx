@@ -18,7 +18,7 @@ export function AuthShell({ title, subtitle, children }: AuthShellProps) {
       }}
     >
       {/* Gradient + dark overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-linear-to-b from-black/50 via-black/40 to-black/60 backdrop-blur-sm" />
 
       {/* Top-left brand */}
       <div className="pointer-events-none absolute left-6 top-6 text-sm font-semibold uppercase tracking-[0.2em] text-white/80">
