@@ -22,7 +22,7 @@ export default async function DashboardPage() {
   // Fetch user count from your API or database
   const baseUrl = process.env.APP_URL || "http://localhost:3000";
 
-  let count = 0;
+  let countUser = 0;
   let error: string | null = null;
 
   try {
@@ -34,15 +34,32 @@ export default async function DashboardPage() {
 
     const data = await res.json();
     if (!res.ok) error = data.error || "Failed to load user count";
-    else count = data.count ?? 0;
+    else countUser = data.count ?? 0;
   } catch {
     error = "Failed to load user count";
   }
 
+  let countBlog = 0;
+  let errorBlog: string | null = null;
+
+  try {
+    const res = await fetch(`${baseUrl}/api/blogs/count`, {
+      cache: "no-store",
+      // if later you protect the count endpoint with auth, forward cookies like this:
+      // headers: { cookie: cookieStore.toString() },
+    });
+
+    const data = await res.json();
+    if (!res.ok) errorBlog = data.error || "Failed to load blog count";
+    else countBlog = data.count ?? 0;
+  } catch {
+    errorBlog = "Failed to load blog count";
+  }
+
   return (
     <DashboardShell>
-      <h1 className="text-2xl font-semibold text-slate-900">Overview</h1>
-      <p className="mt-1 text-sm text-slate-600">Quick snapshot of your app.</p>
+      <h1 className="text-2xl font-semibold text-slate-50">Overview</h1>
+      <p className="mt-1 text-sm text-slate-400">Quick snapshot of your app.</p>
 
       <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
@@ -51,12 +68,27 @@ export default async function DashboardPage() {
           </div>
           <div className="mt-3 flex items-baseline gap-2">
             <span className="text-3xl font-semibold text-slate-900">
-              {count}
+              {countUser}
             </span>
           </div>
           {error && <p className="mt-2 text-xs text-red-600">{error}</p>}
           <p className="mt-3 text-xs text-slate-500">
             Number of users currently stored in the database.
+          </p>
+        </div>
+
+        <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+          <div className="text-xs font-medium uppercase tracking-wide text-slate-500">
+            Total Blogs
+          </div>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-3xl font-semibold text-slate-900">
+              {countBlog}
+            </span>
+          </div>
+          {errorBlog && <p className="mt-2 text-xs text-red-600">{errorBlog}</p>}
+          <p className="mt-3 text-xs text-slate-500">
+            Number of blogs currently stored in the database.
           </p>
         </div>
       </div>

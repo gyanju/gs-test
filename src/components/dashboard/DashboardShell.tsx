@@ -26,6 +26,7 @@ export function DashboardShell({ children }: DashboardShellProps) {
     { href: "/dashboard", label: "Overview" },
     { href: "/dashboard/users", label: "Users" },
     { href: "/dashboard/activity", label: "Activity" },
+    { href: "/dashboard/blogs", label: "Blogs" },
   ];
 
   useEffect(() => {
@@ -41,18 +42,6 @@ export function DashboardShell({ children }: DashboardShellProps) {
     }
     loadMe();
   }, []);
-
-  /*async function handleLogout() {
-    setLogoutLoading(true);
-    try {
-      await fetch("/api/logout", { method: "POST" });
-      router.push("/login");
-    } catch (err) {
-      console.error("Logout error:", err);
-    } finally {
-      setLogoutLoading(false);
-    }
-  }*/
 
   return (
     <div className="flex min-h-screen bg-slate-950 text-slate-50">
@@ -86,8 +75,8 @@ export function DashboardShell({ children }: DashboardShellProps) {
                 href={link.href}
                 className={`group relative flex items-center rounded-xl px-3 py-2 text-sm font-medium transition ${
                   active
-                    ? "bg-blue-600/80 text-white shadow-md"
-                    : "text-slate-300 hover:bg-slate-800/70 hover:text-white"
+                    ? "text-white shadow-md"
+                    : "text-slate-300 hover:text-white"
                 }`}
               >
                 {/* Active indicator bar on the left */}
